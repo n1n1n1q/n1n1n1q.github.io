@@ -385,6 +385,8 @@ h1, h2, h3 {
 .site-footer a { color: var(--text-dim); }
 .site-footer a:hover { color: var(--accent); }
 
+.email-sep { color: rgba(140, 133, 168, 0.55); font-style: italic; }
+
 /* ---------- Reveal ---------- */
 .reveal {
   opacity: 0;
