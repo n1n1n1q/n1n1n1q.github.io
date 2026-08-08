@@ -1,0 +1,19 @@
+{
+  "title": "Your Awesome Research Paper Title Goes Here",
+  "authors": "Oleh Basystyi, Co-Author One, Co-Author Two",
+  "conference": "CVPR 2026",
+  "year": 2026,
+  "date": "2026-06-15",
+  "abstract_snippet": "Replace this with a one or two-sentence description of the paper. This snippet will show up on your main publications overview page to give readers a quick preview of your work.",
+  "thumbnail": "assets/teaser.png",
+  "pdf_url": "https://arxiv.org/pdf/xxxx.xxxxx",
+  "arxiv_url": "https://arxiv.org/abs/xxxx.xxxxx",
+  "code_url": "https://github.com/n1n1n1q/your-repo-name",
+  "video_url": "https://youtube.com/watch?v=xxxxxx",
+  "custom_links": [
+    {
+      "name": "Project Page",
+      "url": ""
+    }
+  ]
+}
