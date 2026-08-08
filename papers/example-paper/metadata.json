@@ -1,13 +1,13 @@
 {
   "title": "Neural Rabbit: High-Fidelity 3D Surface Reconstruction using Gaussian Splatting",
   "authors": "Oleh Basystyi, Co-Author One, Co-Author Two",
-  "conference": "CVPR 2026",
+  "conference": "Awesome Conference 2026",
   "year": 2026,
   "date": "2026-08-08",
   "abstract_snippet": "We introduce a novel surface-aligned Gaussian splatting representation that reconstructs smooth, high-fidelity 3D meshes of complex geometries from sparse-view photos in real-time.",
   "thumbnail": "assets/teaser.png",
-  "pdf_url": "https://arxiv.org/pdf/2312.02685.pdf",
-  "arxiv_url": "https://arxiv.org/abs/2312.02685",
+  "pdf_url": "https://arxiv.org/pdf/xxxx.xxxxx",
+  "arxiv_url": "https://arxiv.org/abs/xxxx.xxxxx",
   "code_url": "https://github.com/n1n1n1q/neural-rabbit",
   "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
   "custom_links": [
