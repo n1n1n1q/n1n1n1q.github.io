@@ -35,64 +35,72 @@
       // Move afterImg into overlay
       overlay.appendChild(afterImg);
 
-      // Create slider handle
+      // Create slider handle (keyboard-operable)
       const handle = document.createElement('div');
       handle.classList.add('compare-handle');
+      handle.setAttribute('role', 'slider');
+      handle.setAttribute('tabindex', '0');
+      handle.setAttribute('aria-label', 'Comparison position');
+      handle.setAttribute('aria-valuemin', '0');
+      handle.setAttribute('aria-valuemax', '100');
       container.appendChild(handle);
 
+      function setPosition(position) {
+        position = Math.min(100, Math.max(0, position));
+        overlay.style.width = position + '%';
+        handle.style.left = position + '%';
+        handle.setAttribute('aria-valuenow', String(Math.round(position)));
+      }
       let pct = 50;
-      overlay.style.width = pct + '%';
-      handle.style.left = pct + '%';
+      setPosition(pct);
 
       // Set dimensions of the after-image to match parent container width
       function resize() {
         afterImg.style.width = container.offsetWidth + 'px';
         afterImg.style.height = container.offsetHeight + 'px';
       }
-
-      // Run on init and window resize
       resize();
       window.addEventListener('resize', resize);
 
-      // Drag mechanics
+      // Drag mechanics: start anywhere on the image
       let isDragging = false;
 
       function startDragging(e) {
         isDragging = true;
         drag(e);
-        container.style.cursor = 'ew-resize';
       }
 
       function stopDragging() {
         isDragging = false;
-        container.style.cursor = '';
       }
 
       function drag(e) {
         if (!isDragging) return;
-        
-        // Support mouse and touch
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const rect = container.getBoundingClientRect();
-        
-        let position = ((clientX - rect.left) / rect.width) * 100;
-        
-        if (position < 0) position = 0;
-        if (position > 100) position = 100;
-
-        overlay.style.width = position + '%';
-        handle.style.left = position + '%';
+        pct = ((clientX - rect.left) / rect.width) * 100;
+        setPosition(pct);
       }
 
-      // Mouse Listeners
-      handle.addEventListener('mousedown', startDragging);
+      container.addEventListener('mousedown', startDragging);
       window.addEventListener('mouseup', stopDragging);
       window.addEventListener('mousemove', drag);
 
-      // Touch Listeners
-      handle.addEventListener('touchstart', startDragging, { passive: true });
+      container.addEventListener('touchstart', startDragging, { passive: true });
       window.addEventListener('touchend', stopDragging);
       window.addEventListener('touchmove', drag, { passive: true });
+
+      // Keyboard: arrows step 5%, Home/End jump to the edges
+      handle.addEventListener('keydown', e => {
+        const steps = { ArrowLeft: -5, ArrowDown: -5, ArrowRight: 5, ArrowUp: 5 };
+        if (e.key in steps) pct += steps[e.key];
+        else if (e.key === 'Home') pct = 0;
+        else if (e.key === 'End') pct = 100;
+        else return;
+        e.preventDefault();
+        pct = Math.min(100, Math.max(0, pct));
+        setPosition(pct);
+      });
     });
   }
 
@@ -119,11 +127,13 @@
 
       // Add navigation buttons
       const prevBtn = document.createElement('button');
+      prevBtn.type = 'button';
       prevBtn.className = 'carousel-btn carousel-prev';
       prevBtn.innerHTML = '&larr;';
       prevBtn.setAttribute('aria-label', 'Previous slide');
 
       const nextBtn = document.createElement('button');
+      nextBtn.type = 'button';
       nextBtn.className = 'carousel-btn carousel-next';
       nextBtn.innerHTML = '&rarr;';
       nextBtn.setAttribute('aria-label', 'Next slide');
@@ -136,8 +146,11 @@
       dotsContainer.className = 'carousel-dots';
       
       slides.forEach((_, index) => {
-        const dot = document.createElement('span');
+        const dot = document.createElement('button');
+        dot.type = 'button';
         dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Slide ${index + 1} of ${slides.length}`);
+        if (index === 0) dot.setAttribute('aria-current', 'true');
         dot.addEventListener('click', () => goToSlide(index));
         dotsContainer.appendChild(dot);
       });
@@ -149,6 +162,8 @@
         const dots = dotsContainer.querySelectorAll('.carousel-dot');
         dots.forEach((dot, index) => {
           dot.classList.toggle('active', index === currentIndex);
+          if (index === currentIndex) dot.setAttribute('aria-current', 'true');
+          else dot.removeAttribute('aria-current');
         });
       }
 
@@ -200,14 +215,14 @@
 
         navigator.clipboard.writeText(citationText).then(() => {
           const originalLabel = btn.innerText;
-          btn.innerText = 'Copied!';
-          btn.style.color = 'var(--accent-2)';
-          btn.style.borderColor = 'var(--accent-2)';
+          btn.innerText = 'Copied';
+          btn.classList.add('is-copied');
+          
           
           setTimeout(() => {
             btn.innerText = originalLabel;
-            btn.style.color = '';
-            btn.style.borderColor = '';
+            btn.classList.remove('is-copied');
+            
           }, 2000);
         }).catch(err => {
           console.error('Could not copy BibTeX:', err);

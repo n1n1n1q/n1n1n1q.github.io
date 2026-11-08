@@ -143,7 +143,7 @@ def build_publications():
             links = []
             
             # Default custom link (Project Page)
-            links.append(f'<a href="{proj_url}">[Project Page]</a>')
+            links.append(f'<a href="{proj_url}">[Project page]</a>')
             
             # PDF Link
             if p.get('pdf_url'):
@@ -180,7 +180,7 @@ def build_publications():
         </div>
         <div class="entry-meta">{authors}</div>
         <p class="entry-desc">{abstract}</p>
-        <div class="entry-links" style="margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.8rem; font-size: 13.5px;">
+        <div class="entry-links">
 {links_html}
         </div>
       </div>"""
