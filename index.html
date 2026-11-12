@@ -11,10 +11,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
-  <link href="./assets/style.css?v=7" rel="stylesheet">
+  <link href="./assets/style.css?v=13" rel="stylesheet">
   <meta name="theme-color" content="#13214a">
   <script>
-    document.documentElement.classList.add('js');
+    /* Theme before first paint: saved choice, else the system setting. */
+    (function () {
+      var d = document.documentElement, t;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      d.dataset.theme = t;
+      d.classList.add('js');
+    })();
   </script>
 </head>
 <body id="top">
@@ -25,6 +32,10 @@
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#publications">Publications</a>
+      <button class="theme-toggle" type="button" aria-label="Switch to light theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z"/></svg>
+      </button>
     </nav>
   </header>
 
@@ -144,7 +155,7 @@
             </div>
           </div>
 
-          <div class="entry">
+          <div class="entry entry--extra">
             <div class="entry-head">
               <div class="entry-title">Teaching Assistant</div>
               <div class="entry-period">Sep 2024 &ndash; Present</div>
@@ -171,7 +182,7 @@
             <p class="entry-desc">Mitacs Globalink intern supervised by Eric Paquette and Adrien Gruson. Extended <b>MILo</b> (Mesh-In-the-Loop Gaussian Splatting) to reduce training time and improve fine-detail reconstruction quality.</p>
           </div>
 
-          <div class="entry">
+          <div class="entry entry--extra">
             <div class="entry-head">
               <div class="entry-title">Research Intern</div>
               <div class="entry-period">Jul 2025 &ndash; Jul 2026</div>
@@ -185,7 +196,7 @@
             </div>
           </div>
 
-          <div class="entry">
+          <div class="entry entry--extra">
             <div class="entry-head">
               <div class="entry-title">Computer Vision Engineer</div>
               <div class="entry-period">Jun 2025 &ndash; Sep 2025</div>
@@ -194,7 +205,7 @@
             <p class="entry-desc">Built a reconstruction pipeline with COLMAP/GLOMAP and Gaussian Splatting (3DGUT) with object detection using YOLO.</p>
           </div>
 
-          <div class="entry">
+          <div class="entry entry--extra">
             <div class="entry-head">
               <div class="entry-title">Research Intern</div>
               <div class="entry-period">Feb 2025 &ndash; Jul 2025</div>
@@ -226,14 +237,14 @@
             <p class="entry-desc">An open-world agent capable of multi-step task planning, combining LLM-based planning with RL-based micro-controls; my focus was the RL side.</p>
           </div>
 
-          <div class="entry">
+          <div class="entry entry--extra">
             <div class="entry-head">
               <div class="entry-title"><a href="https://github.com/n1n1n1q/adhd" target="_blank" rel="noopener">ADHD: Adaptive Dynamic Hazard Detection</a></div>
             </div>
             <p class="entry-desc">A change-detection pipeline that compares 3D point clouds built with Fast3R against mapped 3D objects detected with YOLO.</p>
           </div>
 
-          <div class="entry">
+          <div class="entry entry--extra">
             <div class="entry-head">
               <div class="entry-title"><a href="https://github.com/n1n1n1q/distributed-dl" target="_blank" rel="noopener">Distributed DL</a></div>
             </div>
@@ -247,7 +258,7 @@
             <p class="entry-desc">A Mixture-of-Experts object detection architecture, with custom routing losses evaluated for expert capacity, routing stability and task performance against standard baselines.</p>
           </div>
 
-          <div class="entry">
+          <div class="entry entry--extra">
             <div class="entry-head">
               <div class="entry-title"><a href="https://github.com/Raspy-Py/DroneSwarm" target="_blank" rel="noopener">Drone Swarm</a></div>
             </div>
@@ -291,6 +302,6 @@
     &copy; 2026 Oleh Basystyi &middot; <span class="email">basystyo <span class="email-sep">at</span> gmail <span class="email-sep">dot</span> com</span><span class="email-or" aria-hidden="true">/</span><span class="email">basystyi.pn <span class="email-sep">at</span> ucu <span class="email-sep">dot</span> edu <span class="email-sep">dot</span> ua</span>
   </footer>
 
-  <script src="./assets/script.js?v=7"></script>
+  <script src="./assets/script.js?v=13"></script>
 </body>
 </html>

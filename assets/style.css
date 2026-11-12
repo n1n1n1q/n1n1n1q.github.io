@@ -21,6 +21,12 @@
   --on-accent: #0a1228;
   --border: rgba(234, 242, 255, 0.10);
   --border-strong: rgba(234, 242, 255, 0.22);
+  --grid-ink: #9cc9ff;
+  --grid-minor: 0.18;
+  --grid-major: 0.42;
+  --shadow-photo: 0 8px 20px rgb(3 10 28 / 20%);
+  --shadow-star: rgb(3 10 28 / 50%);
+  --shadow-float: rgb(3 10 28 / 45%);
 
   --font-body: 'Onest', system-ui, sans-serif;
   --font-display: 'Comic Sans MS', 'Comic Neue', cursive;
@@ -34,12 +40,59 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* Light theme: the same notebook by daylight. Cool drafting paper, navy ink, a deeper
+   sky for links, and amber where the lemon would vanish on white. Chosen by the
+   nav toggle (data-theme) or, without JS, by the system setting. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef2fa;
+  --field: #dde5f4;
+  --text: #111c3d;
+  --text-dim: #45547a;
+  --text-muted: #56637f;
+  --link: #1d5bb8;
+  --accent: #e2a300;
+  --pencil: #4c70b3;
+  --on-accent: #111c3d;
+  --border: rgba(17, 28, 61, 0.12);
+  --border-strong: rgba(17, 28, 61, 0.26);
+  --grid-ink: #2f63b8;
+  --grid-minor: 0.09;
+  --grid-major: 0.22;
+  --shadow-photo: 0 8px 18px rgb(17 28 61 / 18%);
+  --shadow-star: rgb(17 28 61 / 30%);
+  --shadow-float: rgb(17 28 61 / 18%);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+    --bg: #eef2fa;
+    --field: #dde5f4;
+    --text: #111c3d;
+    --text-dim: #45547a;
+    --text-muted: #56637f;
+    --link: #1d5bb8;
+    --accent: #e2a300;
+    --pencil: #4c70b3;
+    --on-accent: #111c3d;
+    --border: rgba(17, 28, 61, 0.12);
+    --border-strong: rgba(17, 28, 61, 0.26);
+    --grid-ink: #2f63b8;
+    --grid-minor: 0.09;
+    --grid-major: 0.22;
+    --shadow-photo: 0 8px 18px rgb(17 28 61 / 18%);
+    --shadow-star: rgb(17 28 61 / 30%);
+    --shadow-float: rgb(17 28 61 / 18%);
+  }
+}
+
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
 body {
   margin: 0;
+  transition: background-color 200ms ease, color 200ms ease;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
@@ -91,6 +144,31 @@ b, strong { font-weight: 500; color: var(--text); }
   color: var(--text);
   border-bottom-color: var(--accent);
 }
+.site-nav-inner { position: relative; }
+.theme-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+html:not(.js) .theme-toggle { display: none; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -278,11 +356,12 @@ b, strong { font-weight: 500; color: var(--text); }
 .edu-school { color: var(--text-dim); }
 .edu-note { margin: 12px 0 0; font-size: 14px; color: var(--text); }
 
-.entry-lead { margin-bottom: 12px; }
+.entry-desc.entry-lead { margin-bottom: 12px; }
 .entry-desc a { border-bottom: 1px solid var(--border-strong); }
 
 @media (max-width: 720px) {
-  .site-nav-inner { padding: 12px 16px; gap: 4px 24px; }
+  .site-nav-inner { padding: 12px 56px 12px 16px; gap: 4px 24px; }
+  .theme-toggle { right: 12px; }
   .hero-inner { padding: 40px 16px 104px; }
   .hero-name { margin-bottom: 40px; }
   .hero-body { grid-template-columns: 1fr; gap: 32px; }
@@ -364,6 +443,30 @@ b, strong { font-weight: 500; color: var(--text); }
   font-weight: 600;
 }
 
+/* Extra entries: revealed by "Show more" in their chronological place,
+   one step quieter than the main ones. */
+.entry--extra .entry-title,
+.entry--extra .entry-desc { color: var(--text-dim); }
+.entry--extra .entry-desc b { color: var(--text-dim); }
+.entry--extra .entry-title a { color: var(--text-dim); }
+.entry--extra .entry-meta { color: var(--text-muted); }
+
+.more-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 28px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: var(--link);
+  font: 500 14px/1.4 var(--font-body);
+  cursor: pointer;
+}
+.more-toggle svg { width: 16px; height: 16px; transition: transform 200ms var(--ease-out); }
+.more-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.more-toggle:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 4px; }
+
 .entry-links {
   display: flex;
   flex-wrap: wrap;
@@ -393,11 +496,14 @@ b, strong { font-weight: 500; color: var(--text); }
   .site-nav-inner a:hover { color: var(--text); }
   .profile-meta a:hover { color: var(--link); }
   .entry-title a:hover { color: var(--link); }
+  .more-toggle:hover { color: var(--text); }
+  .entry--extra .entry-title a:hover { color: var(--link); }
   .site-footer a:hover { color: var(--text); }
   .social-icon:hover {
     border-color: var(--link);
     color: var(--link);
   }
+  .theme-toggle:hover { color: var(--text); border-color: var(--link); }
 }
 
 /* ---------- Reveal ---------- */
@@ -433,7 +539,7 @@ b, strong { font-weight: 500; color: var(--text); }
   border-radius: 10px;
   background: transparent;
   transform: rotate(-2deg);
-  box-shadow: 0 8px 20px rgb(3 10 28 / 20%);
+  box-shadow: var(--shadow-photo);
 }
 .profile-photo img { border: 0; border-radius: 10px; }
 
@@ -472,7 +578,7 @@ b, strong { font-weight: 500; color: var(--text); }
   height: 52px;
   z-index: 2;
   color: var(--accent);
-  filter: drop-shadow(0 2px 4px rgb(3 10 28 / 50%));
+  filter: drop-shadow(0 2px 4px var(--shadow-star));
   animation: star-jitter 1.2s steps(1) infinite;
 }
 @keyframes star-jitter {

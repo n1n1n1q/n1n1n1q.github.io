@@ -20,6 +20,28 @@
   --radius-sm: 8px;
   --ease: cubic-bezier(.2, .8, .2, 1);
   --max-width: 880px;
+  --hover-border: var(--hover-border);
+  --overlay: rgba(10, 18, 40, 0.8);
+  --shadow-knob: rgba(0, 0, 0, 0.4);
+}
+
+/* Light theme, matching the personal site (see assets/style.css). */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #eef2fa;
+  --surface: #dde5f4;
+  --surface-2: #cfdaee;
+  --border: rgba(17, 28, 61, 0.12);
+  --border-strong: rgba(17, 28, 61, 0.24);
+  --text: #111c3d;
+  --text-dim: #45547a;
+  --text-muted: #56637f;
+  --accent: #1d5bb8;
+  --accent-rgb: 29, 91, 184;
+  --accent-2: #b98500;
+  --hover-border: rgba(17, 28, 61, 0.34);
+  --overlay: rgba(238, 242, 250, 0.85);
+  --shadow-knob: rgba(17, 28, 61, 0.25);
 }
 
 * { box-sizing: border-box; }
@@ -169,7 +191,7 @@ b, strong { font-weight: 500; }
 }
 .paper-btn:hover {
   background: var(--surface-2);
-  border-color: rgba(243, 239, 250, 0.24);
+  border-color: var(--hover-border);
   color: var(--text);
 }
 .paper-btn:active { transform: scale(0.98); }
@@ -307,7 +329,7 @@ img, video {
   border-radius: 50%;
   background: var(--surface);
   border: 2px solid var(--text);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 8px var(--shadow-knob);
 }
 
 /* ---------- Carousel ---------- */
@@ -355,7 +377,7 @@ img, video {
   position: absolute;
   top: 40%;
   transform: translateY(-50%);
-  background: rgba(14, 16, 26, 0.8);
+  background: var(--overlay);
   border: 1px solid var(--border-strong);
   color: var(--text);
   width: 40px;
@@ -371,7 +393,7 @@ img, video {
 }
 .carousel-btn:hover {
   background: var(--surface-2);
-  border-color: rgba(243, 239, 250, 0.24);
+  border-color: var(--hover-border);
 }
 
 .carousel-prev { left: 16px; }
@@ -462,7 +484,7 @@ img, video {
 .copy-citation-btn:hover {
   color: var(--text);
   background: var(--surface-2);
-  border-color: rgba(243, 239, 250, 0.24);
+  border-color: var(--hover-border);
 }
 .copy-citation-btn.is-copied { color: var(--accent-2); }
 

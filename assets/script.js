@@ -75,9 +75,16 @@
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const INK = '#9cc9ff';
     const GAP = 51;              // grid pitch in px; every 5th line is a major line
-    const MINOR_ALPHA = 0.18, MAJOR_ALPHA = 0.42, LINE_WIDTH = 1.9;
+    const LINE_WIDTH = 1.9;
+    // Ink and opacity come from the theme (--grid-ink, --grid-minor, --grid-major).
+    let ink = '#9cc9ff', minorAlpha = 0.18, majorAlpha = 0.42;
+    function readTheme() {
+      const css = getComputedStyle(hero);
+      ink = css.getPropertyValue('--grid-ink').trim() || ink;
+      minorAlpha = parseFloat(css.getPropertyValue('--grid-minor')) || minorAlpha;
+      majorAlpha = parseFloat(css.getPropertyValue('--grid-major')) || majorAlpha;
+    }
     const LENS_SIGMA = 156;      // loupe radius (gaussian sigma) in px
     const LENS_POWER = 0.5;      // how far points push out at the loupe's centre
 
@@ -111,10 +118,10 @@
         const path = j % 5 === 0 ? major : minor;
         for (let y = -10; y <= height + 10; y += 10) plot(path, j * GAP + offsetX, y, y === -10);
       }
-      ctx.strokeStyle = INK;
+      ctx.strokeStyle = ink;
       ctx.lineWidth = LINE_WIDTH;
-      ctx.globalAlpha = MINOR_ALPHA; ctx.stroke(minor);
-      ctx.globalAlpha = MAJOR_ALPHA; ctx.stroke(major);
+      ctx.globalAlpha = minorAlpha; ctx.stroke(minor);
+      ctx.globalAlpha = majorAlpha; ctx.stroke(major);
       ctx.globalAlpha = 1;
     }
 
@@ -146,8 +153,10 @@
       ratio = Math.min(devicePixelRatio || 1, 1.5);
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
+      readTheme();
       draw();
     }
+    document.addEventListener('themechange', () => { readTheme(); draw(); });
 
     hero.addEventListener('pointermove', event => {
       if (motion.matches) return;
@@ -185,7 +194,126 @@
     build();
   }
 
+  /* Theme toggle: flips data-theme, remembers the choice, and follows the
+     system setting until the visitor picks one. */
+  function themeToggle() {
+    const root = document.documentElement;
+    const button = document.querySelector('.theme-toggle');
+    const meta = document.querySelector('meta[name="theme-color"]');
+    const system = matchMedia('(prefers-color-scheme: light)');
+
+    function apply(theme) {
+      root.dataset.theme = theme;
+      if (button) button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+      if (meta) meta.setAttribute('content', getComputedStyle(root).getPropertyValue('--field').trim());
+      document.dispatchEvent(new Event('themechange'));
+    }
+    apply(root.dataset.theme === 'light' ? 'light' : 'dark');
+
+    if (button) button.addEventListener('click', () => {
+      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
+      apply(next);
+    });
+    system.addEventListener('change', () => {
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) { /* private mode */ }
+      if (!saved) apply(system.matches ? 'light' : 'dark');
+    });
+  }
+
+  /* "Show more": extra entries stay in their chronological place in the
+     list but start hidden; one button under the list reveals them all.
+     Without JS they are simply visible. */
+  /* Unfold an entry in place: its box grows from nothing (height, spacing and
+     divider together, so neighbours glide rather than jump), then its lines
+     settle in one after another. Folding plays the same thing backwards. */
+  const EASE = 'cubic-bezier(0.23, 1, 0.32, 1)';
+  const FOLD_EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+  const FOLD_MS = 340;
+  function unfold(entry, open, i) {
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still || !entry.animate || !entry.getAnimations) { entry.hidden = !open; return; }
+    entry.getAnimations({ subtree: true }).forEach((a) => a.cancel());
+
+    entry.hidden = false;
+    const css = getComputedStyle(entry);
+    const full = {
+      height: `${entry.offsetHeight}px`,
+      paddingTop: css.paddingTop,
+      marginTop: css.marginTop,
+      borderTopColor: css.borderTopColor,
+      opacity: 1
+    };
+    const flat = { height: '0px', paddingTop: '0px', marginTop: '0px', borderTopColor: 'transparent', opacity: 0 };
+    entry.style.overflow = 'hidden';
+    const delay = open ? i * 60 : 0;
+    // Folding: the text fades out in the first half, so the shrinking box never
+    // shows clipped half-lines; the box itself closes on a smooth ease.
+    const frames = open ? [flat, full] : [
+      { ...full, offset: 0 },
+      { opacity: 0, offset: 0.45 },
+      { ...flat, offset: 1 }
+    ];
+    const box = entry.animate(frames, {
+      duration: open ? 460 : FOLD_MS, delay, easing: open ? EASE : FOLD_EASE, fill: 'both'
+    });
+    if (open) {
+      Array.from(entry.children).forEach((child, k) => {
+        child.animate([
+          { opacity: 0, transform: 'translateY(10px)' },
+          { opacity: 1, transform: 'none' }
+        ], { duration: 420, delay: delay + 120 + k * 50, easing: EASE, fill: 'both' });
+      });
+    }
+    box.onfinish = () => {
+      entry.style.overflow = '';
+      if (!open) entry.hidden = true;
+      box.cancel(); // its last frame matches the natural layout, so nothing jumps
+    };
+  }
+
+  /* While content above it folds away, keep the button where the cursor is:
+     the list closes up into the button instead of the button running off. */
+  function holdInPlace(el, ms) {
+    const top = el.getBoundingClientRect().top;
+    const end = performance.now() + ms;
+    (function frame(now) {
+      const drift = el.getBoundingClientRect().top - top;
+      if (Math.abs(drift) > 0.5) window.scrollTo({ top: window.scrollY + drift, behavior: 'instant' });
+      if (now < end) requestAnimationFrame(frame);
+    })(performance.now());
+  }
+
+  function showMore() {
+    document.querySelectorAll('.entry-list').forEach((list, index) => {
+      const extras = list.querySelectorAll(':scope > .entry--extra');
+      if (!extras.length) return;
+      if (!list.id) list.id = `entry-list-${index}`;
+      extras.forEach((entry) => { entry.hidden = true; });
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'more-toggle';
+      button.setAttribute('aria-controls', list.id);
+      button.setAttribute('aria-expanded', 'false');
+      button.innerHTML = '<span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+      const label = button.querySelector('span');
+      const closed = `Show ${extras.length} more`;
+      label.textContent = closed;
+      button.addEventListener('click', () => {
+        const open = button.getAttribute('aria-expanded') !== 'true';
+        button.setAttribute('aria-expanded', String(open));
+        label.textContent = open ? 'Show less' : closed;
+        if (!open) holdInPlace(button, FOLD_MS + 40);
+        extras.forEach((entry, i) => unfold(entry, open, i));
+      });
+      list.after(button);
+    });
+  }
+
   onReady(() => {
+    themeToggle();
+    showMore();
     revealOnScroll();
     navSpy();
     heroBackdrop();
