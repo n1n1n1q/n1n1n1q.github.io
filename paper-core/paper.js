@@ -129,13 +129,13 @@
       const prevBtn = document.createElement('button');
       prevBtn.type = 'button';
       prevBtn.className = 'carousel-btn carousel-prev';
-      prevBtn.innerHTML = '&larr;';
+      prevBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>';
       prevBtn.setAttribute('aria-label', 'Previous slide');
 
       const nextBtn = document.createElement('button');
       nextBtn.type = 'button';
       nextBtn.className = 'carousel-btn carousel-next';
-      nextBtn.innerHTML = '&rarr;';
+      nextBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
       nextBtn.setAttribute('aria-label', 'Next slide');
 
       carousel.appendChild(prevBtn);
@@ -231,8 +231,31 @@
     });
   }
 
+  // --- THEME TOGGLE (same choice as the personal site, shared via localStorage) ---
+  function initThemeToggle() {
+    const root = document.documentElement;
+    const button = document.querySelector('.theme-toggle');
+    const system = matchMedia('(prefers-color-scheme: light)');
+    function apply(theme) {
+      root.dataset.theme = theme;
+      if (button) button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    }
+    apply(root.dataset.theme === 'light' ? 'light' : 'dark');
+    if (button) button.addEventListener('click', () => {
+      const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
+      apply(next);
+    });
+    system.addEventListener('change', () => {
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) { /* private mode */ }
+      if (!saved) apply(system.matches ? 'light' : 'dark');
+    });
+  }
+
   // --- INITIALIZE ALL ---
   onReady(() => {
+    initThemeToggle();
     initCompareSliders();
     initCarousels();
     initCopyButtons();
