@@ -17,7 +17,8 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(SCRIPT_DIR)
 PAPERS_DIR = os.path.join(BASE_DIR, 'papers')
 TEMPLATE_DIR = SCRIPT_DIR
-PUBLICATIONS_FILE = os.path.join(BASE_DIR, 'publications.html')
+# Publications live in a section of the single-page site
+PUBLICATIONS_FILE = os.path.join(BASE_DIR, 'index.html')
 
 def create_new_paper(slug):
     # Validate slug

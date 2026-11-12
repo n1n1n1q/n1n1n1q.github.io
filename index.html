@@ -8,114 +8,289 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
-  <link href="./assets/style.css" rel="stylesheet">
-  <script>document.documentElement.classList.add('js');</script>
+  <link href="./assets/style.css?v=7" rel="stylesheet">
+  <meta name="theme-color" content="#13214a">
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
-<body>
+<body id="top">
 
   <header class="site-nav">
     <nav class="site-nav-inner" aria-label="Sections">
-      <a class="is-active" href="./" aria-current="page">About</a>
-      <a href="./publications">Publications</a>
-      <a href="./experience">Experience</a>
-      <a href="./projects">Projects</a>
+      <a class="is-active" href="#top" aria-current="true">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
     </nav>
   </header>
 
-  <main class="wrap">
-    <div class="profile-grid reveal">
+  <main>
 
-      <!-- =================== SIDEBAR =================== -->
-      <aside class="profile-side">
-        <div class="profile-photo-wrap">
-          <div class="profile-photo">
-            <img src="./assets/photo.png" alt="Oleh Basystyi">
-          </div>
-          <svg class="wavy-frame" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" preserveAspectRatio="none">
-            <path class="wavy-frame-1" d="M8,4 C30,-2 70,-1 92,6 C99,28 98,72 93,92 C71,99 29,98 7,93 C1,71 2,29 8,4 Z"/>
-            <path class="wavy-frame-2" d="M6,6 C28,0 72,2 94,4 C97,30 96,70 90,94 C69,97 31,96 9,90 C3,68 4,30 6,6 Z"/>
-            <path class="wavy-frame-3" d="M9,2 C32,-3 68,-2 90,8 C98,26 99,74 91,90 C72,98 28,99 9,89 C0,73 -1,27 9,2 Z"/>
-            <path class="wavy-frame-4" d="M5,5 C27,1 73,-1 95,5 C99,27 97,73 92,95 C70,99 30,97 8,92 C2,70 3,28 5,5 Z"/>
-          </svg>
-          <svg class="photo-doodle" viewBox="0 0 60 60" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M30 4 L35 23 L55 27 L34 32 L29 55 L25 33 L5 29 L26 25 Z"/>
-          </svg>
-        </div>
-        <h1 class="profile-name">Oleh Basystyi</h1>
-        <div class="profile-title">R&amp;D Engineer</div>
+    <!-- =================== HERO =================== -->
+    <section class="hero">
+      <div class="hero-inner">
+        <h1 class="hero-name">Oleh Basystyi</h1>
 
-        <hr class="profile-divider">
-
-        <ul class="profile-meta">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            Lviv, Ukraine
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
-            Ukrainian Catholic University
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-            <a href="mailto:basystyo@gmail.com">basystyo <span class="email-sep">at</span> gmail <span class="email-sep">dot</span> com</a>
-          </li>
-        </ul>
-
-        <div class="social-links">
-          <a class="social-icon" href="https://github.com/n1n1n1q" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          </a>
-          <a class="social-icon" href="https://www.linkedin.com/in/basystyi/" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <!-- TODO: replace # with your actual Google Scholar profile URL -->
-          <a class="social-icon" href="#" title="Google Scholar" aria-label="Google Scholar" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
-          </a>
-        </div>
-      </aside>
-
-      <!-- =================== CONTENT =================== -->
-      <div class="profile-content">
-        <!-- <div class="content-eyebrow">Machine Learning &middot; Computer Vision &middot; Graphics</div> -->
-        <p class="content-intro">
-          I'm an R&amp;D Engineer based in Lviv, Ukraine, currently studying Computer Science at the
-          Ukrainian Catholic University :3
-        </p>
-
-        <div class="content-block">
-          <h2 class="block-title">Research interests</h2>
-          <div class="interests-list">
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Computer Vision</span>
-            <span class="tag">Graphics</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">Scene Understanding</span>
-          </div>
-        </div>
-
-        <div class="content-block">
-          <h2 class="block-title">Education</h2>
-          <div class="education-entry">
-            <div class="edu-top">
-              <span class="edu-degree">Computer Science</span>
-              <span class="edu-period">2023 &ndash; Present</span>
+        <div class="hero-body">
+          <div class="profile-photo-wrap">
+            <div class="profile-photo">
+              <img src="./assets/photo.png" alt="Oleh Basystyi">
             </div>
-            <div class="edu-school">Ukrainian Catholic University (UCU)</div>
+            <svg class="wavy-frame" viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path class="wavy-frame-1" d="M17.6,5.4 C19.0,5.3 23.1,5.2 25.8,5.0 C28.6,4.9 31.2,4.5 34.0,4.3 C36.7,4.2 39.6,4.2 42.5,4.1 C45.4,3.9 48.2,3.6 51.1,3.6 C54.0,3.5 57.0,3.7 59.8,3.9 C62.7,4.2 65.4,4.7 68.2,5.0 C71.0,5.2 73.6,5.4 76.5,5.4 C79.3,5.4 82.5,4.6 85.3,4.8 C88.0,5.1 91.6,5.1 93.1,6.8 C94.7,8.5 94.4,12.2 94.7,15.0 C95.0,17.7 95.1,20.3 95.0,23.1 C95.0,26.0 94.6,29.1 94.4,31.9 C94.3,34.8 94.2,37.6 94.3,40.4 C94.5,43.1 95.1,45.8 95.4,48.5 C95.6,51.3 95.8,54.3 95.8,57.1 C95.9,60.0 95.8,62.9 95.8,65.8 C95.9,68.7 96.2,71.7 96.2,74.6 C96.1,77.4 95.8,80.2 95.6,82.9 C95.4,85.7 96.0,88.9 94.8,91.0 C93.6,93.2 91.0,94.8 88.5,95.6 C86.1,96.4 83.0,95.8 80.1,95.8 C77.2,95.7 74.1,95.4 71.1,95.2 C68.2,95.1 65.3,94.9 62.4,94.8 C59.6,94.7 56.8,94.8 54.0,94.7 C51.2,94.6 48.4,94.2 45.6,94.2 C42.7,94.3 40.0,94.7 37.1,94.9 C34.2,95.2 31.2,95.8 28.2,95.9 C25.3,96.1 22.4,96.0 19.6,95.9 C16.7,95.9 13.6,96.5 11.1,95.7 C8.5,95.0 5.4,93.7 4.2,91.6 C3.0,89.5 3.9,85.9 3.8,83.1 C3.7,80.2 3.8,77.4 3.6,74.5 C3.5,71.7 3.0,69.0 3.0,66.1 C3.0,63.2 3.2,60.0 3.5,57.1 C3.7,54.1 4.4,51.1 4.6,48.2 C4.8,45.3 4.8,42.5 4.8,39.7 C4.8,36.9 4.8,34.0 4.8,31.2 C4.8,28.3 5.0,25.6 4.9,22.7 C4.7,19.7 3.7,16.4 3.9,13.5 C4.0,10.6 4.0,6.8 5.7,5.2 C7.5,3.7 11.6,4.3 14.4,4.1 C17.3,3.9 20.2,4.1 23.0,3.9 C25.8,3.8 28.3,3.2 31.2,3.0 C34.0,2.8 38.5,2.7 39.9,2.7"/>
+              <path class="wavy-frame-2" d="M23.5,4.3 C24.9,4.3 29.2,4.2 32.2,4.3 C35.1,4.5 38.2,5.0 41.1,5.0 C44.0,5.0 46.7,4.7 49.6,4.5 C52.5,4.3 55.4,3.9 58.3,3.9 C61.2,3.8 64.1,4.1 67.0,4.2 C69.9,4.2 72.9,4.1 75.7,4.3 C78.5,4.4 81.4,4.4 84.0,4.9 C86.6,5.4 89.8,5.4 91.5,7.0 C93.2,8.5 93.7,11.8 94.3,14.3 C94.9,16.9 94.8,19.5 94.9,22.3 C95.0,25.0 94.9,28.0 94.9,30.8 C94.9,33.7 94.9,36.5 94.9,39.4 C95.0,42.2 95.1,45.1 95.1,47.9 C95.0,50.8 94.7,53.6 94.8,56.5 C94.8,59.4 95.1,62.2 95.3,65.2 C95.6,68.1 96.2,71.3 96.4,74.3 C96.6,77.3 96.6,80.3 96.5,83.2 C96.4,86.0 97.0,89.4 95.7,91.5 C94.4,93.6 91.5,95.2 88.8,95.8 C86.1,96.4 82.5,95.2 79.5,95.0 C76.5,94.9 73.7,94.8 70.8,94.8 C68.0,94.9 65.3,95.2 62.5,95.3 C59.6,95.4 56.7,95.5 53.8,95.3 C51.0,95.2 48.1,94.8 45.2,94.6 C42.3,94.5 39.6,94.5 36.7,94.5 C33.9,94.6 31.0,94.7 28.1,94.8 C25.3,94.9 22.4,94.9 19.4,95.2 C16.4,95.4 12.6,96.8 9.9,96.2 C7.3,95.6 4.3,93.9 3.3,91.6 C2.2,89.2 3.7,85.2 3.9,82.1 C4.0,79.1 4.0,76.2 4.0,73.2 C4.1,70.3 3.9,67.4 3.9,64.5 C4.0,61.6 4.1,58.6 4.1,55.7 C4.1,52.8 4.0,49.9 4.0,47.0 C3.9,44.0 3.6,41.0 3.7,38.1 C3.9,35.3 4.5,32.5 4.8,29.7 C5.1,26.9 5.4,24.3 5.4,21.4 C5.4,18.5 4.4,15.2 4.8,12.5 C5.2,9.7 6.0,6.3 7.9,4.9 C9.8,3.5 13.4,4.2 16.1,3.9 C18.8,3.5 21.5,3.2 24.4,3.1 C27.3,3.0 30.4,3.1 33.4,3.2 C36.4,3.3 39.5,3.7 42.4,3.6 C45.4,3.6 49.7,3.0 51.2,2.9"/>
+              <path class="wavy-frame-3" d="M20.6,5.1 C22.0,5.1 26.1,5.0 28.9,5.0 C31.7,5.1 34.6,5.3 37.4,5.3 C40.2,5.3 42.9,5.1 45.7,5.1 C48.4,5.1 51.2,5.3 54.0,5.3 C56.8,5.3 59.5,5.3 62.4,5.1 C65.2,4.9 68.2,4.3 71.1,4.1 C74.0,3.8 77.1,3.6 79.9,3.6 C82.8,3.6 85.7,3.3 88.2,4.0 C90.7,4.7 94.0,5.7 95.2,7.7 C96.4,9.8 95.4,13.6 95.4,16.5 C95.3,19.4 95.0,22.4 94.9,25.2 C94.9,28.0 95.0,30.7 95.1,33.5 C95.2,36.2 95.6,38.9 95.5,41.7 C95.4,44.5 94.9,47.5 94.7,50.3 C94.5,53.1 94.2,55.8 94.1,58.5 C94.1,61.3 94.3,64.0 94.4,66.8 C94.5,69.6 94.5,72.3 94.6,75.2 C94.8,78.0 95.0,80.9 95.2,83.9 C95.4,86.8 96.7,91.0 95.6,93.1 C94.4,95.1 91.0,95.9 88.2,96.3 C85.5,96.8 82.1,95.8 79.1,95.7 C76.2,95.6 73.5,95.7 70.6,95.7 C67.8,95.7 65.0,95.7 62.1,95.7 C59.3,95.7 56.5,95.7 53.6,95.7 C50.8,95.7 48.0,95.8 45.1,95.8 C42.3,95.8 39.4,95.9 36.6,95.7 C33.9,95.5 31.3,94.8 28.6,94.6 C25.9,94.3 23.2,94.3 20.4,94.3 C17.6,94.4 14.2,95.6 11.7,95.0 C9.1,94.4 6.4,92.8 5.2,90.8 C4.0,88.8 4.6,85.6 4.4,82.9 C4.2,80.2 4.0,77.5 3.9,74.7 C3.9,71.9 4.0,68.9 4.1,66.1 C4.1,63.2 4.5,60.3 4.4,57.4 C4.3,54.6 3.7,51.9 3.5,49.0 C3.2,46.2 3.0,43.2 2.9,40.3 C2.9,37.4 3.0,34.5 3.1,31.6 C3.2,28.7 3.3,25.8 3.4,23.0 C3.5,20.2 3.3,17.2 3.7,14.5 C4.1,11.9 4.2,8.7 5.8,7.0 C7.5,5.3 10.9,5.1 13.5,4.6 C16.1,4.0 18.5,3.8 21.3,3.7 C24.0,3.6 27.1,3.8 30.0,3.8 C32.8,3.8 37.2,3.9 38.6,3.9"/>
+              <path class="wavy-frame-4" d="M19.6,5.0 C21.1,5.0 25.4,5.1 28.3,5.1 C31.1,5.1 33.9,5.1 36.8,5.1 C39.6,5.0 42.4,4.8 45.3,4.9 C48.1,5.0 51.0,5.6 53.9,5.8 C56.7,6.0 59.4,6.1 62.2,6.0 C65.1,5.8 68.1,5.1 71.1,4.8 C74.0,4.5 77.0,4.4 79.9,4.3 C82.9,4.2 86.0,3.6 88.7,4.2 C91.4,4.8 94.9,5.7 96.0,7.9 C97.2,10.1 95.8,14.2 95.7,17.2 C95.5,20.3 95.1,23.4 95.1,26.3 C95.1,29.2 95.4,31.8 95.5,34.7 C95.6,37.5 95.7,40.4 95.7,43.3 C95.6,46.2 95.2,49.1 95.1,52.0 C95.0,54.9 95.0,57.7 94.9,60.6 C94.8,63.4 94.7,66.2 94.5,69.0 C94.4,71.7 93.9,74.3 93.9,77.1 C93.9,79.9 94.8,83.1 94.7,86.0 C94.5,88.9 94.9,93.0 93.2,94.6 C91.5,96.2 87.3,95.3 84.5,95.4 C81.6,95.6 78.8,95.5 75.9,95.5 C73.0,95.6 70.2,95.7 67.3,95.7 C64.4,95.7 61.5,95.6 58.6,95.6 C55.7,95.7 52.8,95.7 49.9,95.9 C47.0,96.1 44.1,96.6 41.1,96.6 C38.2,96.6 35.3,96.2 32.4,96.0 C29.6,95.8 26.8,95.5 24.0,95.3 C21.2,95.2 18.3,95.4 15.6,95.1 C12.8,94.8 9.4,94.9 7.6,93.4 C5.9,91.8 5.7,88.4 5.1,85.8 C4.6,83.2 4.6,80.5 4.5,77.8 C4.3,75.0 4.3,72.1 4.4,69.2 C4.4,66.3 4.6,63.3 4.6,60.4 C4.6,57.5 4.6,54.7 4.4,51.8 C4.3,48.9 4.1,46.0 3.9,43.1 C3.8,40.2 3.9,37.3 3.7,34.2 C3.5,31.2 2.9,28.1 2.7,25.0 C2.6,22.0 2.4,18.8 2.7,16.0 C2.9,13.2 2.8,10.0 4.2,8.0 C5.7,6.1 8.7,4.8 11.3,4.1 C14.0,3.4 17.0,3.9 19.9,3.9 C22.8,3.9 25.9,4.1 28.8,4.0 C31.7,4.0 34.6,3.9 37.5,3.9 C40.4,3.8 44.7,3.7 46.2,3.7"/>
+            </svg>
+            <svg class="photo-doodle" viewBox="0 0 60 60" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M30 4 L35 23 L55 27 L34 32 L29 55 L25 33 L5 29 L26 25 Z"/>
+            </svg>
+          </div>
+
+          <div class="hero-copy">
+            <div class="profile-title">R&amp;D Engineer</div>
+            <p class="content-intro">
+              I'm an R&amp;D Engineer based in Lviv, Ukraine, currently studying Computer Science at the
+              Ukrainian Catholic University :3
+            </p>
+
+            <ul class="profile-meta">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                Lviv, Ukraine
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+                Ukrainian Catholic University
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                <span class="email">basystyo <span class="email-sep">at</span> gmail <span class="email-sep">dot</span> com</span><span class="email-or" aria-hidden="true">/</span><span class="email">basystyi.pn <span class="email-sep">at</span> ucu <span class="email-sep">dot</span> edu <span class="email-sep">dot</span> ua</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg>
+                <a href="./cv/cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+              </li>
+            </ul>
+
+            <div class="social-links">
+              <a class="social-icon" href="https://github.com/n1n1n1q" title="GitHub" aria-label="GitHub" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+              <a class="social-icon" href="https://www.linkedin.com/in/basystyi/" title="LinkedIn" aria-label="LinkedIn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a class="social-icon" href="https://scholar.google.com/citations?user=eHlHtVQAAAAJ" title="Google Scholar" aria-label="Google Scholar" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- =================== SECTIONS =================== -->
+    <div class="sections">
+
+      <section class="section reveal" id="about" aria-labelledby="about-title">
+        <h2 class="section-title" id="about-title">About</h2>
+        <div class="section-body about-grid">
+          <div class="content-block">
+            <h3 class="block-title">Research interests</h3>
+            <div class="interests-list">
+              <span class="tag">Machine Learning</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Graphics</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">Scene Understanding</span>
+            </div>
+          </div>
+
+          <div class="content-block">
+            <h3 class="block-title">Education</h3>
+            <div class="education-entry">
+              <div class="edu-top">
+                <span class="edu-degree">Computer Science</span>
+                <span class="edu-period">Sep 2023 &ndash; Present</span>
+              </div>
+              <div class="edu-school">Ukrainian Catholic University (UCU)</div>
+              <p class="edu-note">Ranked among the top 5 Computer Science students in 2023&ndash;24, 2024&ndash;25 and 2025&ndash;26; cumulative GPA 98.2 / 100.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="experience" aria-labelledby="experience-title">
+        <h2 class="section-title" id="experience-title">Experience</h2>
+        <div class="section-body">
+        <div class="entry-list">
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Research and Development Engineer</div>
+              <div class="entry-period">Jul 2025 &ndash; Present</div>
+            </div>
+            <div class="entry-meta">SoftServe &middot; Remote</div>
+            <div class="entry-desc">
+              <ul>
+                <li>Designed an indoor surface reconstruction framework for 3D Gaussian Splatting.</li>
+                <li>Formulated plane assignment as an iterative algorithm, refining both Gaussians and planes.</li>
+                <li>Gave an open lecture on 3DGS and co-authored two white papers.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Teaching Assistant</div>
+              <div class="entry-period">Sep 2024 &ndash; Present</div>
+            </div>
+            <div class="entry-meta">Ukrainian Catholic University &middot; Lviv, Ukraine &middot; Part-time</div>
+            <p class="entry-desc entry-lead">Led office hours, mentored final projects, developed study materials, laboratory works and homework, and graded coursework.</p>
+            <div class="entry-desc">
+              <ul>
+                <li><b>Artificial Intelligence</b> (Aug 2026 &ndash; Present) | currently TA for the course.</li>
+                <li><b>Linear Algebra</b> (Jan &ndash; May 2026) | mentored course projects and conducted seminars and lab defenses.</li>
+                <li><b>Algorithms and Data Structures</b> (Jun 2025 &ndash; Jan 2026) | restructured the course, developed study materials, and ran seminars and exams.</li>
+                <li><b>Architecture of Computer Systems</b> (Jan &ndash; May 2025) | gave feedback on lab works and helped students understand course material.</li>
+                <li><b>Discrete Mathematics</b> (Sep 2024 &ndash; Jan 2025) | restructured course projects and developed study materials.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Research Intern</div>
+              <div class="entry-period">May 2026 &ndash; Aug 2026</div>
+            </div>
+            <div class="entry-meta">&Eacute;cole de technologie sup&eacute;rieure (&Eacute;TS) &middot; Montreal, Canada</div>
+            <p class="entry-desc">Mitacs Globalink intern supervised by Eric Paquette and Adrien Gruson. Extended <b>MILo</b> (Mesh-In-the-Loop Gaussian Splatting) to reduce training time and improve fine-detail reconstruction quality.</p>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Research Intern</div>
+              <div class="entry-period">Jul 2025 &ndash; Jul 2026</div>
+            </div>
+            <div class="entry-meta">Ukrainian Catholic University</div>
+            <div class="entry-desc">
+              <ul>
+                <li>Implemented and compared filtering algorithms for IMU-based navigation.</li>
+                <li>Evaluated SLAM and VIO algorithms in low-light conditions, identifying failure modes and research gaps.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Computer Vision Engineer</div>
+              <div class="entry-period">Jun 2025 &ndash; Sep 2025</div>
+            </div>
+            <div class="entry-meta">Alta Ares &middot; Part-time</div>
+            <p class="entry-desc">Built a reconstruction pipeline with COLMAP/GLOMAP and Gaussian Splatting (3DGUT) with object detection using YOLO.</p>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title">Research Intern</div>
+              <div class="entry-period">Feb 2025 &ndash; Jul 2025</div>
+            </div>
+            <div class="entry-meta">UCU Machine Learning Lab &middot; Remote &middot; Part-time</div>
+            <p class="entry-desc">Investigated efficiency-oriented alternatives to Gaussian Splatting and SfM; the work continued at SoftServe.</p>
+          </div>
+
+        </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="projects" aria-labelledby="projects-title">
+        <h2 class="section-title" id="projects-title">Projects</h2>
+        <div class="section-body">
+        <div class="entry-list">
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title"><a href="https://github.com/n1n1n1q/SULLLAM" target="_blank" rel="noopener">SULLLAM: Simultaneous Uncertainty Low-Light Localization and Mapping</a></div>
+            </div>
+            <p class="entry-desc">A Python SLAM framework that integrates uncertainty estimation for low-light environments.</p>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title"><a href="https://github.com/n1n1n1q/alex" target="_blank" rel="noopener">ALEX: A General-Purpose Minecraft AI Agent</a></div>
+            </div>
+            <p class="entry-desc">An open-world agent capable of multi-step task planning, combining LLM-based planning with RL-based micro-controls; my focus was the RL side.</p>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title"><a href="https://github.com/n1n1n1q/adhd" target="_blank" rel="noopener">ADHD: Adaptive Dynamic Hazard Detection</a></div>
+            </div>
+            <p class="entry-desc">A change-detection pipeline that compares 3D point clouds built with Fast3R against mapped 3D objects detected with YOLO.</p>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title"><a href="https://github.com/n1n1n1q/distributed-dl" target="_blank" rel="noopener">Distributed DL</a></div>
+            </div>
+            <p class="entry-desc">A libtorch-based framework for distributed deep learning, implementing MPI and NCCL communication primitives over Torch tensors, plus a Python- and GDB-based MPI-friendly debugger.</p>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title"><a href="https://github.com/n1n1n1q/MoE-COMPUTEr" target="_blank" rel="noopener">MoE-ComputerV</a></div>
+            </div>
+            <p class="entry-desc">A Mixture-of-Experts object detection architecture, with custom routing losses evaluated for expert capacity, routing stability and task performance against standard baselines.</p>
+          </div>
+
+          <div class="entry">
+            <div class="entry-head">
+              <div class="entry-title"><a href="https://github.com/Raspy-Py/DroneSwarm" target="_blank" rel="noopener">Drone Swarm</a></div>
+            </div>
+            <p class="entry-desc">A low-cost LED detection algorithm for an embedded device (OpenCV, Eigen, PyTorch), and research into estimating the distance between an FPV drone and an object of interest.</p>
+          </div>
+
+        </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="publications" aria-labelledby="publications-title">
+        <h2 class="section-title" id="publications-title">Publications</h2>
+        <div class="section-body">
+          <div class="entry-list">
+      <!-- PUBLICATIONS_START -->
+      <div class="entry">
+        <div class="entry-head">
+          <div class="entry-title"><a href="./papers/example-paper/">Neural Rabbit: High-Fidelity 3D Surface Reconstruction using Gaussian Splatting</a></div>
+          <div class="entry-period">Awesome Conference 2026</div>
+        </div>
+        <div class="entry-meta">Oleh Basystyi, Vladyslav Speedorak, Anna Sus</div>
+        <p class="entry-desc">We introduce a novel surface-aligned Gaussian splatting representation that reconstructs smooth, high-fidelity 3D meshes of complex geometries from sparse-view photos in real-time.</p>
+        <div class="entry-links">
+          <a href="./papers/example-paper/">[Project page]</a>
+          <a href="https://arxiv.org/pdf/xxxx.xxxxx" target="_blank" rel="noopener">[PDF]</a>
+          <a href="https://arxiv.org/abs/xxxx.xxxxx" target="_blank" rel="noopener">[arXiv]</a>
+          <a href="https://github.com/n1n1n1q/neural-rabbit" target="_blank" rel="noopener">[Code]</a>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">[Video]</a>
+        </div>
+      </div>
+      <!-- PUBLICATIONS_END -->
+          </div>
+        </div>
+      </section>
 
     </div>
+
   </main>
 
   <footer class="site-footer">
-    &copy; 2026 Oleh Basystyi &middot; <a href="mailto:basystyo@gmail.com">basystyo <span class="email-sep">at</span> gmail <span class="email-sep">dot</span> com</a>
+    &copy; 2026 Oleh Basystyi &middot; <span class="email">basystyo <span class="email-sep">at</span> gmail <span class="email-sep">dot</span> com</span><span class="email-or" aria-hidden="true">/</span><span class="email">basystyi.pn <span class="email-sep">at</span> ucu <span class="email-sep">dot</span> edu <span class="email-sep">dot</span> ua</span>
   </footer>
 
-  <script src="./assets/script.js"></script>
+  <script src="./assets/script.js?v=7"></script>
 </body>
 </html>
